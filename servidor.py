@@ -14,11 +14,16 @@ def envia_cliente(client_conn):
     while True:
 
         data = client_conn.recv(1024)
+
         if(not data):
             print(client_conn.getpeername(), 'saiu')
             return
 
-        print(data)
+        dataConvert = str(data, 'utf-8')
+        dataView = dataConvert.replace(',','')
+
+        print(dataView)
+
         for c in listaClient:
             c.send(data)
 
